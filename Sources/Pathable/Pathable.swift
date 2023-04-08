@@ -1,3 +1,10 @@
+//
+//  Pathable.swift
+//  Pathable
+//
+//  Created by Elaine Lyons on 4/8/23.
+//
+
 import Foundation
 
 // MARK: - PathEquatable
