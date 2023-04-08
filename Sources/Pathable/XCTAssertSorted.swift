@@ -14,7 +14,7 @@ internal typealias LessThanOrEqualAssertion<T: Comparable> = (_ expression1: @au
 
 // MARK: - Comparable Elements
 
-/// Asserts that a [`Sequence`](https://developer.apple.com/documentation/swift/sequence) is sorted.
+/// Asserts that a sequence is sorted.
 /// - Parameters:
 ///   - sequence: The sequence to check.
 ///   - file: The file where the failure occurs.
@@ -97,7 +97,7 @@ public func XCTAssertSorted<S: Sequence, Value>(
     XCTAssertSorted(sequence, path: path, file: file, line: line, assertion: XCTAssertLessThanOrEqual)
 }
 
-/// Use ``XCTAssertSorted(_:keyPath:file:line:)``
+/// Use ``XCTAssertSorted(_:path:file:line:)``
 ///
 /// This internal function exists to support an injectable `LessThanOrEqualAssertion`
 /// for the sake of testing the functionality of this assertion function itself.
@@ -119,7 +119,7 @@ internal func XCTAssertSorted<S: Sequence, Value>(
 /// key path using a custom predicate as the comparison between elements.
 /// - Parameters:
 ///   - sequence: The sequence to check.
-///   - keyPath: The key path of the property it should be sorted by.
+///   - path: The key path of the property it should be sorted by.
 ///   - file: The file where the failure occurs. The default is the filename of the test case where you call this function.
 ///   - line: The line number where the failure occurs. The default is the line number where you call this function.
 ///   - assert: The underlying XCTest assertion for each comparison.
