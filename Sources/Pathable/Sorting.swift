@@ -7,9 +7,9 @@
 
 import Foundation
 
-// MARK: - Array+Sorting
+// MARK: - Sequence+Sorted
 
-extension Sequence {
+public extension Sequence {
     /// Returns the elements of the array, sorted by the value
     /// of the property at a specified key path.
     ///
@@ -33,7 +33,7 @@ extension Sequence {
     /// // sortedByAge == [Person(name: "Beatrice", age: 25), Person(name: "Alice", age: 30), Person(name: "Cait", age: 35)]
     /// ```
     ///
-    /// - Parameter keyPath: The key path of the property to sort by.
+    /// - Parameter path: The key path of the property to sort by.
     /// - Returns: A array of the sequence’s elements sorted by a given property.
     /// - Complexity: O(n log n), where n is the length of the collection.
     func sorted<Value>(
@@ -69,7 +69,7 @@ extension Sequence {
     /// ```
     ///
     /// - Parameters:
-    ///   - keyPath: The key path of the property to sort by.
+    ///   - path: The key path of the property to sort by.
     ///   - areInIncreasingOrder: A predicate that returns `true` if its first
     /// argument should be ordered before its second argument; otherwise, `false`.
     /// - Returns: A array of the sequence’s elements sorted by a given property.
@@ -84,7 +84,9 @@ extension Sequence {
     }
 }
 
-extension Array {
+// MARK: - Array+Sort
+
+public extension Array {
     /// Sorts the collection in place, using the value of the
     /// property at a specified key path as the sort key.
     ///
@@ -108,7 +110,7 @@ extension Array {
     /// // people == [Person(name: "Beatrice", age: 25), Person(name: "Alice", age: 30), Person(name: "Cait", age: 35)]
     /// ```
     ///
-    /// - Parameter keyPath: The key path of the property to use as the sort key.
+    /// - Parameter path: The key path of the property to use as the sort key.
     /// - Complexity: O(*n* log *n*) where *n* is the length of the collection.
     mutating func sort<Value>(
         path: KeyPath<Self.Element, Value>
@@ -143,7 +145,7 @@ extension Array {
     /// ```
     ///
     /// - Parameters:
-    ///   - keyPath: A key path that indicates the property to use as the sort key.
+    ///   - path: A key path that indicates the property to use as the sort key.
     ///   - areInIncreasingOrder: A predicate that returns `true` if its first argument
     /// should be ordered before its second argument; otherwise, `false`.
     /// - Complexity: O(*n* log *n*) where *n* is the length of the collection.
