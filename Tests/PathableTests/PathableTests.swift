@@ -1,11 +1,38 @@
 import XCTest
-@testable import Pathable
+// Intentionally not using a @testable import to ensure
+// implementation is as expected. There are no internal
+// entities that need to be tested directly.
+import Pathable
 
 final class PathableTests: XCTestCase {
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(Pathable().text, "Hello, World!")
+    
+    // MARK: - PathEquatable
+    
+    func testPathEquatable() {
+        struct Person: PathEquatable {
+            static let equatablePath = \Self.name
+            let name: String
+            var nonEquatableProperty: () -> Void = { }
+        }
+        
+        let name = UUID().uuidString
+        XCTAssertEqual(Person(name: name), Person(name: name))
+        XCTAssertNotEqual(Person(name: name), Person(name: UUID().uuidString))
+    }
+    
+    // MARK: - PathComparable
+    
+    func testPathComparable() {
+        struct Person: PathComparable {
+            static let comparablePath = \Self.name
+            let name: String
+            var nonEquatableProperty: () -> Void = { }
+        }
+        let personA = Person(name: "A")
+        let personB = Person(name: "B")
+        XCTAssertGreaterThan(personB, personA)
+        XCTAssertLessThan(personA, personB)
+        XCTAssertEqual(personA, personA)
+        XCTAssertEqual(Person.equatablePath, Person.comparablePath)
     }
 }
